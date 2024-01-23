@@ -35,13 +35,7 @@
                           Please fill in the first name
                         </div>
                       </div>
-                      <div class="form-group col-md-6 col-12">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" value="Maman" required="">
-                        <div class="invalid-feedback">
-                          Please fill in the last name
-                        </div>
-                      </div>
+                      
                     </div>
                     
                 </div>
