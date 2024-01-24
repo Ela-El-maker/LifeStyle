@@ -33,7 +33,7 @@
                     <div class="row">
                       <div class="form-group col-md-6 col-12">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="{{old($user->name)}}" required="">
+                        <input type="text" class="form-control" name="name" value="{{old('name',$user->name)}}" required="">
                         @if ($errors->has('name'))
                             <code>{{$errors->first('name')}}</code>                          
                         @endif
@@ -41,23 +41,21 @@
 
                       <div class="form-group col-md-6 col-12">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" value="{{old($user->email)}}" required="">
+                        <input type="email" class="form-control" name="email" value="{{old('email',$user->email)}}" required="">
                         @if ($errors->has('email'))
                             <code>{{$errors->first('email')}}</code>                          
                         @endif
                       </div>
-                      
-
-
-                     
+                   
+                    </div>
+                    <div class="card-footer text-right">
+                      <button class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
                     
                     
                 </div>
-                <div class="card-footer text-right">
-                  <button class="btn btn-primary">Save Changes</button>
-                </div>
+                
               </form>
             </div>
           </div>
