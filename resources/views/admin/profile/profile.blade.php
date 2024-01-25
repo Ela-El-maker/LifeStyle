@@ -13,16 +13,14 @@
         </div>
       </div>
       <div class="section-body">
-        <h2 class="section-title">Hi, Ujang!</h2>
+        <h2 class="section-title">Hi, {{old('name',$user->name)}}!</h2>
         <p class="section-lead">
           Change information about yourself on this page.
         </p>
-
         <div class="row mt-sm-4">
-        
           <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-              <form method="post"  class="needs-validation" novalidate="">
+              
                 <div class="card-header">
                   <h4>Profile Information</h4>
                 </div>
@@ -51,67 +49,46 @@
                     <div class="card-footer text-right">
                       <button class="btn btn-primary">Save Changes</button>
                     </div>
-                  </form>
-                    
-                    
+                  </form>  
                 </div>
-                
-              </form>
             </div>
             <div class="card">
-              <form method="post"  class="needs-validation" novalidate="">
                 <div class="card-header">
-                  <h4>Profile Information</h4>
+                  <h4>Update Password Information</h4>
                 </div>
                 <div class="card-body">
-                  <form action="{{ route('profile.update') }}" method="POST">
+                  <form action="{{ route('password.update') }}" method="POST">
                     @csrf
-                    @method('patch')
+                    @method('put')
                     <div class="row">
-                      <div class="form-group col-md-6 col-12">
+                      <div class="form-group col-12">
                         <label>Current Password</label>
-                        <input type="password" class="form-control" name="current_password" value="{{old('name',$user->name)}}" required="">
+                        <input type="password" class="form-control" name="current_password"  autocomplete="current-password" >
                         @if ($errors->updatePassword->has('current_password'))
                             <code>{{$errors->updatePassword->first('current_password')}}</code>                          
                         @endif
                       </div>
-                      <div class="form-group col-md-6 col-12">
-                        <label>Name</label>
-                        <input type="password" class="form-control" name="current_password" value="{{old('name',$user->name)}}" required="">
-                        @if ($errors->updatePassword->has('current_password'))
-                            <code>{{$errors->updatePassword->first('current_password')}}</code>                          
+                      <div class="form-group col-12">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" name="password"  autocomplete="new-password">
+                        @if ($errors->updatePassword->has('password'))
+                            <code>{{$errors->updatePassword->first('password')}}</code>                          
                         @endif
                       </div>
-                      <div class="form-group col-md-6 col-12">
-                        <label>Name</label>
-                        <input type="password" class="form-control" name="current_password" value="{{old('name',$user->name)}}" required="">
-                        @if ($errors->updatePassword->has('current_password'))
-                            <code>{{$errors->updatePassword->first('current_password')}}</code>                          
+                      <div class="form-group col-12">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirmation"  autocomplete="new-password" >
+                        @if ($errors->updatePassword->has('password_confirmation'))
+                            <code>{{$errors->updatePassword->first('password_confirmation')}}</code>                          
                         @endif
                       </div>
 
-                      <div>
-                        <x-input-label for="update_password_password" :value="__('New Password')" />
-                        <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-                        <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-                    </div>
-            
-                    <div>
-                        <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-                        <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-                        <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
-                    </div>
-                   
                     </div>
                     <div class="card-footer text-right">
                       <button class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
-                    
-                    
                 </div>
-                
-              </form>
             </div>
           </div>
         </div>
