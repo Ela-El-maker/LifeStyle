@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>Dashboard</title>
 
   <!-- General CSS Files -->
@@ -22,6 +23,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+  @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
 <body>
@@ -76,6 +78,11 @@
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  
+    
+
   <!--- Show dynamic validation errors --->
   <script>
     @if (!empty($errors -> all()))
@@ -84,7 +91,121 @@
     toastr.error("{{$error}}")
     @endforeach
   @endif
+
   </script>
+  <script>
+    $(document).ready(function(){
+      //csrf token
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      // sweet alert for deleting
+      $('body').on('click', '.delete-item', function(e){
+        e.preventDefault();
+        let deleteUrl = $(this).attr('href');
+        //console.log(deleteUrl);
+        //var id = $(this).data('id');
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              type : 'DELETE',
+              url : deleteUrl,
+              success : function(data){
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+                window.location.reload();
+              },
+              error: function(xhr, status, error){
+                console.log(error);
+                // Swal.fire(
+                //   'Oops...',
+                //   'Something went wrong!',
+                //   'error'
+                // )
+              }
+            })
+            // Swal.fire(
+            //   'Deleted!',
+            //   'Your file has been deleted.',
+            //   'success'
+            // )
+            //$(this).closest('tr').remove();
+          }
+        })
+      })
+    })
+  </script>
+
+  {{-- <script>
+    $(document).ready(function(){
+      // CSRF token setup
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+  
+      // Delete item handler
+      $('body').on('click', '.delete-item', function(e){
+        e.preventDefault();
+        let deleteUrl = $(this).attr('href');
+  
+        // Display confirmation dialog
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // If confirmed, send AJAX request to delete item
+            $.ajax({
+              type : 'DELETE',
+              url : deleteUrl,
+              success : function(data){
+                Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                );
+                window.location.reload(); // Reload page after deletion
+              },
+              error: function(xhr, status, error){
+                console.log(error);
+                Swal.fire(
+                  'Oops...',
+                  'Something went wrong!',
+                  'error'
+                );
+              }
+            });
+          }
+        });
+      });
+    });
+  </script> --}}
+  
+
+  <!--- Show dynamic validation errors --->
+
+  @stack('scripts')
+
 </body>
 </html>
 
