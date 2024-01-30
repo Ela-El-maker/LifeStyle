@@ -67,38 +67,41 @@ class HeroController extends Controller
             'image' => ['max:3000','image'],
         ]);
         //dd($request ->all());
+
+        $hero = Hero::first();
+
         if($request -> hasFile('image')){
             // dd("Hello World");
-            $hero = Hero::first();
-               if($hero  && File::exists(public_path($hero -> image))){
-                   File::delete(public_path($hero -> image));
-               }
-   
-               $image = $request -> file('image');
-               $imageName = rand().$image -> getClientOriginalName();
-               $image -> move(public_path('/uploads'), $imageName);
-   
-               $imagePath = "/uploads/" . $imageName;
-            //    dd($imagePath);
-               Hero::updateorCreate(
-                  ['id' => $id],
-                  [
-                       'title' => $request -> title,
-                       'sub_title' => $request -> sub_title,
-                       'btn_text' => $request -> btn_text,
-                       'btn_url' => $request -> btn_url,
-                       'image' => isset($imagePath) ? $imagePath : '',
-                   ]
-                   );
+            
+            if($hero  && File::exists(public_path($hero -> image))){
+                File::delete(public_path($hero -> image));
+            }
 
-                   //dd('success');
-                //Display a success toast, with a title
-                toastr()->success('Updated Successfully', 'Congrats');
-                return redirect() -> back();
-          
-         
-        
+   
+            $image = $request -> file('image');
+            $imageName = rand().$image -> getClientOriginalName();
+            $image -> move(public_path('/uploads'), $imageName);
+
+            $imagePath = "/uploads/".$imageName;
+
         }
+        //    dd($imagePath);
+        Hero::updateorCreate(
+            ['id' => $id],
+            [
+                'title' => $request -> title,
+                'sub_title' => $request -> sub_title,
+                'btn_text' => $request -> btn_text,
+                'btn_url' => $request -> btn_url,
+                'image' => isset($imagePath) ? $imagePath : $hero -> image,
+            ]
+        );
+
+        //dd('success');
+        //Display a success toast, with a title
+        toastr()->success('Updated Successfully', 'Congrats');
+        return redirect()->back();
+    
     }
 
     /**
