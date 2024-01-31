@@ -82,6 +82,7 @@
 
   
     
+    
 
   <!--- Show dynamic validation errors --->
   <script>
@@ -95,54 +96,42 @@
   </script>
   <script>
     $(document).ready(function(){
-      //csrf token
+      //Csrf validation 
       $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-      // sweet alert for deleting
-      $('body').on('click', '.delete-item', function(e){
-        e.preventDefault();
+      // Sweet Alert
+      $('body').on('click','.delete-item',function(e){
         let deleteUrl = $(this).attr('href');
-        //console.log(deleteUrl);
-        //var id = $(this).data('id');
+        e.preventDefault();
         Swal.fire({
-          title: 'Are you sure?',
+          title: "Are you sure?",
           text: "You won't be able to revert this!",
-          icon: 'warning',
+          icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
-              type : 'DELETE',
+              type: "DELETE",
               url : deleteUrl,
-              success : function(data){
-                Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-                )
+              success: function(data){
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
                 window.location.reload();
               },
-              error: function(xhr, status, error){
+              error: function(xhr, status, error) {
                 console.log(error);
-                // Swal.fire(
-                //   'Oops...',
-                //   'Something went wrong!',
-                //   'error'
-                // )
               }
             })
-            // Swal.fire(
-            //   'Deleted!',
-            //   'Your file has been deleted.',
-            //   'success'
-            // )
-            //$(this).closest('tr').remove();
+            
           }
         })
       })

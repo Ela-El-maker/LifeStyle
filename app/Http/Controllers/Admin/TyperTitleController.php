@@ -103,6 +103,6 @@ class TyperTitleController extends Controller
         $title -> delete();
 
         //toastr()->success('Deleted successfully', 'Congratulations');
-        return redirect()->route('admin.typer-title.index');
+        //return redirect()->route('admin.typer-title.index');
     }
 }
