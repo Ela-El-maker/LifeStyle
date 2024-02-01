@@ -129,6 +129,11 @@
               },
               error: function(xhr, status, error) {
                 console.log(error);
+                // Swal.fire({
+                //   title: "Oops...",
+                //   text: "Something went wrong!",
+                //   icon: "error"
+                // });
               }
             })
             
