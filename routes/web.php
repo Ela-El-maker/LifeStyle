@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -47,9 +48,17 @@ require __DIR__.'/auth.php';
 /**Admin Routes ** */
 
 Route::group(['middleware' => ['auth'],'prefix' => 'admin', 'as' => 'admin.'], function(){
+
+    /***Hero Route */
     Route::resource('hero', HeroController::class);
+
+    /**TyperTitle Route **/
     Route::resource('typer-title', TyperTitleController::class);
 
     /**Services Route */
     Route::resource('service', ServiceController::class);
+
+    /**About Route */
+    Route::get('resume/download', [AboutController::class, 'resumeDownload'])-> name('resume.download');
+    Route::resource('about', AboutController::class);
 });
