@@ -7,7 +7,7 @@
       <div class="section-header-back">
         <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
       </div>
-      <h1>Skill Section Setting</h1>
+      <h1>Experience Section</h1>
       
     </div>
 
@@ -16,27 +16,14 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>Update Skill Section Setting</h4>
+              <h4>Update Experience Section</h4>
             </div>
             <div class="card-body">
 
-            <form action="{{route('admin.skill-section-setting.update',1)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.experience.update',1)}}" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 @method('PUT')
-                <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
-                    <div class="col-sm-12 col-md-7">
-                      <input type="text" name="title" class="form-control" value="{{$skillSectionSetting -> title}}">
-                    </div>
-                </div>
-
-                <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Sub Title</label>
-                    <div class="col-sm-12 col-md-7">
-                        <textarea name="sub_title" id="" cols="30" rows="10" class="form-control" style="height: 100px">{!! $skillSectionSetting -> sub_title !!}</textarea>
-                    </div>
-                </div>
 
                 <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
@@ -45,6 +32,35 @@
                         <label for="image-upload" id="image-label">Choose File</label>
                         <input type="file" name="image" id="image-upload" />
                       </div>
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="text" name="title" class="form-control" value="{{$experience -> title}}">
+                    </div>
+                </div>
+
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
+                    <div class="col-sm-12 col-md-7">
+                      <textarea name="description" class="summernote">{!! $experience -> description!!}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Phone</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="text" name="phone" class="form-control" value="{{$experience -> phone}}">
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="text" name="email" class="form-control" value="{{$experience -> email}}">
                     </div>
                 </div>
 
@@ -65,13 +81,12 @@
 
 @endsection
 
-
 @push('scripts')
 
   <script>
     $(document).ready(function(){
         $('#image-preview').css({
-            'background-image': 'url("{{asset($skillSectionSetting -> image)}}")',
+            'background-image': 'url("{{asset($experience -> image)}}")',
             'background-size': 'cover',
             'background-position': 'center center',
         })

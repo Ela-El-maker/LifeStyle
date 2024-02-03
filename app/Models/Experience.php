@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SkillSectionSetting extends Model
+class Experience extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
-        'sub_title',
         'image',
+        'title',
+        'description',
+        'phone',
+        'email',
     ];
 }

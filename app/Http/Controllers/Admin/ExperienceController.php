@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\SkillSectionSetting;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 
-class SkillSectionSettingController extends Controller
+class ExperienceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class SkillSectionSettingController extends Controller
     public function index()
     {
         //
-        $skillSectionSetting = SkillSectionSetting::first();
-        return view('admin.skill-section-setting.index', compact('skillSectionSetting'));
-        // return view('admin.skill-section-setting.index');
+        $experience = Experience::first();
+        return view('admin.experience.index', compact('experience'));
     }
 
     /**
@@ -57,24 +56,29 @@ class SkillSectionSettingController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        
         $request -> validate([
-            'title' => ['required','max:200'],
-            'sub_title' => ['required','max:1000'],
-            'image' => ['image','max:5000'],
+            'image' =>['required','max:5000'],
+            'title' =>['required','max:200'],
+            'description' =>['required','max:1000'],
+            'phone' =>['nullable','max:100'],
+            'email' =>['nullable','max:100','email'],
         ]);
 
-        $skill = SkillSectionSetting::first();
-
-        $imagePath = handleUploads('image', $skill);
-        
-        SkillSectionSetting::updateorCreate(
+        $experience = Experience::find($id);
+        $imagePath = handleUploads('image', $experience);
+        // dd($request-> all());
+        Experience::updateorCreate(
             ['id' => $id],
             [
+                'image' =>  (!empty($imagePath) ? $imagePath : $experience -> image),
                 'title' => $request -> title,
-                'sub_title' => $request -> sub_title,
-                'image' => (!empty($imagePath) ? $imagePath : $skill -> image),
+                'description' => $request -> description,
+                'phone' => $request -> phone,
+                'email' => $request -> email,
             ]
         );
+
         //Display a success toast, with a title
         toastr()->success('Updated Successfully', 'Congrats');
         return redirect()->back();

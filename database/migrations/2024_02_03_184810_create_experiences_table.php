@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skill_section_settings', function (Blueprint $table) {
+        Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('sub_title');
             $table->text('image')-> nullable();
+            $table->string('title')-> nullable();
+            $table->text('description')-> nullable();
+            $table->string('phone')-> nullable();
+            $table->string('email')-> nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skill_section_settings');
+        Schema::dropIfExists('experiences');
     }
 };
