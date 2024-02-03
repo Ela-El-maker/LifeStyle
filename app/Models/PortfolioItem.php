@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PortfolioItem extends Model
 {
     use HasFactory;
+    //protected $fillable = ['name'];
     public function category(){
         
         return $this->belongsTo(Category::class);

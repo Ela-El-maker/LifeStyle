@@ -22,14 +22,15 @@ class PortfolioItemDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('image', function ( $query){
+            ->addColumn('image', function ($query){
                 return '<img src="'.asset($query->image).'" width="100" height="100"></img>';
             })
             ->addColumn('created_at', function($query){
                 return date('d-m-Y H:i:s', strtotime($query->created_at));
             })
             ->addColumn('category', function($query){
-                return $query -> category-> name;
+                return $query -> category->name;
+                //return optional($query->category)->name;
             })
             ->addColumn('action', function($query){
                 return '<a href="'.route('admin.portfolio-item.edit', $query -> id).'" class="btn btn-primary"><i class="fas fa-edit"></i></a>

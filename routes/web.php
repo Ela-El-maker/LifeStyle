@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 /**Admin Routes ** */
 
+Route::get('portfolio-details/{id}', [HomeController::class, 'showPortfolio'])-> name('show.portfolio');
+
 Route::group(['middleware' => ['auth'],'prefix' => 'admin', 'as' => 'admin.'], function(){
 
     /***Hero Route */
@@ -73,4 +75,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'admin', 'as' => 'admin.'], f
     
     /**Portfolio Section Setting Route */
     Route::resource('portfolio-section-setting', PortfolioSectionSettingController::class);
+
+    /**Skill Section Setting Route */
+    Route::resource('skill-section-setting', PortfolioSectionSettingController::class);
 });

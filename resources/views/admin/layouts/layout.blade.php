@@ -123,12 +123,22 @@
               type: "DELETE",
               url : deleteUrl,
               success: function(data){
-                Swal.fire({
+                if (data.status == 'error'){
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Category cannot be deleted because it has items!',
+                  })
+                }
+                else{
+                  Swal.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",
                   icon: "success"
                 });
                 window.location.reload();
+                }
+                
               },
               error: function(xhr, status, error) {
                 console.log(error);
