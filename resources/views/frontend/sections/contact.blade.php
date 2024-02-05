@@ -50,7 +50,7 @@
 						</div>
 						<div class="col-sm-12">
 							<div class="form-box">
-								<button class="button-primary mouse-dir" type="submit">Send Now <span
+								<button class="button-primary mouse-dir" type="submit" id="submit_btn">Send Now <span
 										class="dir-part"></span></button>
 							</div>
 						</div>
@@ -74,12 +74,37 @@
 			$(document).on('submit','#contact-form', function(e){
 			e.preventDefault();
 			$.ajax({
-				type: 'POST',
-				url: {{route('contact')}},
+				type: "POST",
+				url: "{{route('contact')}}",
 				data: $(this).serialize(),
+				beforeSend: function(){
+
+					$('#submit_btn').prop('disabled', true);
+					$('#submit_btn').text('Please Wait...');
+				},
 				success: function(response){
-					console.log(response)
+					console.log(response);
+					if(response.status == 'success'){
+						toastr.success(response.message);
+						$('#submit_btn').prop('disabled', false);
+						$('#submit_btn').text('Send Now');
+						$('#contact-form').trigger('reset');
 					}
+				},
+				error: function(response){
+					if(response.status == 422){
+						let errorMessage = $.parseJSON(response.responseText);
+
+						$.each(errorMessage.errors, function(key, val){
+							console.log(val[0]);
+							toastr.error(val[0])
+						})
+
+						$('#submit_btn').prop('disabled', false);
+						$('#submit_btn').text('Send Now');
+
+					}
+				},
 				})
 			})
 		})
