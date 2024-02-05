@@ -14,7 +14,8 @@ class ContactSectionSettingController extends Controller
     public function index()
     {
         //
-        $contactSectionSetting = ContactSectionSetting::first();
+        $contactTitle = ContactSectionSetting::first();
+        return view('admin.contact-section-setting.index', compact('contactTitle'));
     }
 
     /**
@@ -55,6 +56,24 @@ class ContactSectionSettingController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'title' =>['required', 'max:200'],
+            'sub_title' =>['required', 'max:500'],
+        ]);
+
+        ContactSectionSetting::updateorCreate(
+            ['id' => $id],
+            [
+                'title' => $request -> title,
+                'sub_title' => $request -> sub_title,
+            ]
+        );
+
+
+        //dd('success');
+        //Display a success toast, with a title
+        toastr()->success('Updated Successfully', 'Congrats');
+        return redirect()->back();
     }
 
     /**

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('contact_section_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('sub_title');
             $table->timestamps();
         });
     }
