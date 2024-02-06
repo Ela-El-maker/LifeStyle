@@ -10,8 +10,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\FeedbackSectionSettingController;
+use App\Http\Controllers\Admin\FooterContactInfoController;
+use App\Http\Controllers\Admin\FooterHelpLinkController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\FooterSocialLinkController;
+use App\Http\Controllers\Admin\FooterUsefullLinkController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
@@ -131,6 +134,13 @@ Route::group(['middleware' => ['auth'],'prefix' => 'admin', 'as' => 'admin.'], f
     /***Footer social Route */
     Route::resource('footer-info', FooterInfoController::class);
 
-    
+    /**Footer Contact Info Route */
+    Route::resource('footer-contact-info', FooterContactInfoController::class);
+
+    /**Footer Usefull Link Route */
+    Route::resource('footer-usefull-link', FooterUsefullLinkController::class);
+
+    /**Footer Help Link Route */
+    Route::resource('footer-help-link', FooterHelpLinkController::class);
     
 });
