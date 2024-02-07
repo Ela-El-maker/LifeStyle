@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SeoSetting;
 use Illuminate\Http\Request;
 
 class SeoSettingController extends Controller
@@ -13,7 +14,8 @@ class SeoSettingController extends Controller
     public function index()
     {
         //
-        return view('admin.settings.seo-setting.index');
+        $seo = SeoSetting::first();
+        return view('admin.settings.seo-setting.index', compact('seo'));
     }
 
     /**
@@ -54,6 +56,25 @@ class SeoSettingController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request-> validate([
+            'title' => ['required','max:200'],
+            'description' => ['required','max:500'],
+            'keywords' => ['required','max:300'],
+        ]);
+        SeoSetting::updateorCreate(
+            ['id' => $id],
+            [
+                'title' => $request -> title,
+                'description' => $request -> description,
+                'keywords' => $request -> keywords,
+            ]
+        );
+        //dd('success');
+        //Display a success toast, with a title
+        toastr()->success('Updated Successfully', 'Congrats');
+        return redirect()->back();
+
+        //return redirect()->route('admin.portfolio-section-setting.index');
     }
 
     /**

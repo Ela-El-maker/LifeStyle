@@ -51,3 +51,16 @@ function getDynamicColors($index){
 
     return $colors[$index % count($colors)];
 }
+
+
+/***Set sidebar active**/
+
+function setSidebarActive($route){
+    if (is_array($route)){
+        foreach ($route as $key) {
+            if(request()->routeIs($key)){
+                return 'active';
+            }
+        }
+    }
+}

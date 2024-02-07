@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SeoSetting extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'description',
+        'keywords',
+    ];
 }
