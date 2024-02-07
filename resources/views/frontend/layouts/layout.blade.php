@@ -1,3 +1,8 @@
+@php
+    $generalSettings = \App\Models\GeneralSettings::first();
+
+@endphp
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -9,7 +14,7 @@
 	
 	
 	<title>Rabins | Personal Portfolio HTML Template</title>
-	<link rel="shortcut icon" type="image/ico" href="images/favicon.png" />
+	<link rel="shortcut icon" type="image/ico" href="{{asset($generalSettings->favicon)}}" />
 	<link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('frontend/assets/css/normalize.css')}}">
 	<link rel="stylesheet" href="{{asset('frontend/assets/css/style-plugin-collection.css')}}">
