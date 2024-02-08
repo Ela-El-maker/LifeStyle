@@ -56,6 +56,7 @@ Route::get('/portfolio-details', function () {
     return view('frontend.portfolio-details');
 });
 
+Route::get('resume/download', [AboutController::class, 'resumeDownload'])-> name('resume.download');
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -90,7 +91,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'admin', 'as' => 'admin.'], f
     Route::resource('service', ServiceController::class);
 
     /**About Route */
-    Route::get('resume/download', [AboutController::class, 'resumeDownload'])-> name('resume.download');
+    
     Route::resource('about', AboutController::class);
 
     /**Portfolio Category Route */

@@ -55,26 +55,39 @@ class GeneralSettingsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //dd($request->all());
         $request -> validate([
-            'logo' =>['required','max:5000','image'],
-            'footer_logo' =>['required','max:5000','image'],
-            'favicon' =>['required','max:5000','image'],
+            'logo' =>['max:5000','image'],
+            'footer_logo' =>['max:5000','image'],
+            'favicon' =>['max:5000','image'],
         ]);
+
         $setting = GeneralSettings::first();
-
-        $logo = handleUploads('logo',$setting);
-        $footer_logo = handleUploads('footer_logo',$setting);
-        $favicon = handleUploads('favicon',$setting);
-        
-        $generalSettings = new GeneralSettings();
-        $generalSettings->logo = (!empty($logo) ? $logo : $setting->logo);
-        $generalSettings->footer_logo = (!empty($footer_logo) ? $footer_logo : $setting->footer_logo);
-        $generalSettings->favicon = (!empty($favicon) ? $favicon : $setting->favicon);
-
+        $logo = handleUploads('logo', $setting);
+        $footer_logo = handleUploads('footer_logo', $setting);  
+        $favicon = handleUploads('favicon', $setting);
+        $generalSettings = GeneralSettings::first();
+        $generalSettings->logo = (!empty($logo)? $logo : $setting->logo);
+        $generalSettings->footer_logo = (!empty($footer_logo)? $footer_logo : $setting->footer_logo);
+        $generalSettings->favicon = (!empty($favicon)? $favicon : $setting->favicon);
         $generalSettings->save();
-        toastr('General Settings saved successfully', 'success');
+        toastr('General Settings saved successfully', 'info');
         return redirect()->back();
+        //dd($request->all());
+        // $setting = GeneralSettings::first();
+
+        // $logo = handleUploads('logo',$setting);
+        // $footer_logo = handleUploads('footer_logo',$setting);
+        // $favicon = handleUploads('favicon',$setting);
+        
+        // $generalSettings = GeneralSettings::first();
+        // $generalSettings->logo = (!empty($logo) ? $logo : $setting->logo);
+        // $generalSettings->footer_logo = (!empty($footer_logo) ? $footer_logo : $setting->footer_logo);
+        // $generalSettings->favicon = (!empty($favicon) ? $favicon : $setting->favicon);
+
+        // $generalSettings->save();
+        // toastr('General Settings saved successfully', 'success');
+        // return redirect()->back();
     }
 
     /**

@@ -29,7 +29,7 @@
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Logo Preview</label>
                   <div class="col-sm-12 col-md-7">
-                    <img style="width: 200px" src="{{asset($generalSettings->logo)}}" alt="">
+                    <img style="width: 200px" src="{{$generalSettings->logo}}" alt="">
                   </div>
                 </div>
                 <div class="form-group row mb-4">
@@ -45,7 +45,7 @@
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Footer Logo Preview</label>
                   <div class="col-sm-12 col-md-7">
-                    <img style="width: 200px" src="{{asset($generalSettings->footer_logo)}}" alt="">
+                    <img style="width: 200px" src="{{$generalSettings->footer_logo}}" alt="">
                   </div>
                 </div>
 
@@ -62,7 +62,7 @@
                 <div class="form-group row mb-4">
                   <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Favicon Preview</label>
                   <div class="col-sm-12 col-md-7">
-                    <img style="width: 200px" src="{{asset($generalSettings->favicon)}}" alt="">
+                    <img style="width: 200px" src="{{$generalSettings->favicon}}" alt="">
                   </div>
                 </div>
 
