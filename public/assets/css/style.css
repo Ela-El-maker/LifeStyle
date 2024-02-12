@@ -726,7 +726,7 @@ select.form-control:not([size]):not([multiple]) {
 /* 3.5 Card */
 .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-  background-color: #fff;
+  background-color: #075b5b;
   border-radius: 3px;
   border: none;
   position: relative;
@@ -2409,7 +2409,7 @@ body, html {
 }
 
 body {
-  background-color: #f4f6f9;
+  background-color: #401e0d;
   font-size: 14px;
   font-weight: 400;
   font-family: "Nunito", "Segoe UI", arial;
@@ -2862,7 +2862,7 @@ pre {
 .section .section-header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-  background-color: #fff;
+  background-color: #9abd9d;
   border-radius: 3px;
   border: none;
   position: relative;
@@ -3003,7 +3003,7 @@ pre {
   top: 0;
   height: 100%;
   width: 250px;
-  background-color: #fff;
+  background-color: #083337;
   z-index: 880;
   left: 0;
 }

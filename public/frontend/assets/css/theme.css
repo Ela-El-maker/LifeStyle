@@ -911,7 +911,7 @@ blockquote {
     margin-left: 15px;
     margin-top: 10px;
     background: #f3f7ff;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 
 .single-blog {
@@ -940,7 +940,7 @@ blockquote {
 
 .single-blog .blog-image {
     margin-bottom: 26px;
-    border-radius: 10px;
+    border-radius: 25px;
     overflow: hidden;
 }
 
@@ -1067,7 +1067,7 @@ Footer-Area
 .footer-area {
     padding-top: 90px;
     /* padding-bottom: 30px; */
-    background-color: #190844;
+    background-color: #1c1b1a;
 }
 
 .footer-widgets {
@@ -1090,7 +1090,7 @@ Footer-Area
 }
 
 .footer-bottom {
-    background-color: #80ced7;
+    background-color: #98d5c1;
     /* margin-left: 5px; */
     /* margin-right: 5px; */
     padding: 25px 15px;
@@ -1205,7 +1205,7 @@ Footer-Area
 13. Portfolio-Page
 -------------------------- */
 .site-header {
-    background-image: url('../images/site-header.jpg');
+    background-image: url('../images/logo-1677364_1280.png');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -1431,7 +1431,7 @@ Footer-Area
 }
 
 .main_menu.menu_fix {
-    background: #fff;
+    background: #98d5c1;
     border-color: #eeeeeeb5;
 }
 
